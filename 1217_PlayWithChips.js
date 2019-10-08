@@ -12,10 +12,7 @@ var minCostToMoveChips = function(chips) {
       odd++;
     }
   });
-  if (even < odd) {
-    return even;
-  }
-  return odd;
+  return Math.min(even, odd);
 };
 
 // Math.max()
