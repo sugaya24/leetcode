@@ -3,16 +3,23 @@
  * @param {number} target
  * @return {number}
  */
+// using binary search
 var searchInsert = function(nums, target) {
-  if (nums.length === 0) {
-    return 0;
-  }
-  for (let i = 0; i < nums.length; i++) {
-    if (target <= nums[i]) {
-      return i;
+  if (nums.length === 0) return 0;
+  if (nums.length === 1) return target <= nums[0] ? 0 : 1;
+  // binary search
+  let start = 0;
+  let end = nums.length;
+  while (start < end) {
+    const pos = Math.floor((start + end) / 2);
+    if (nums[pos] === target) return pos;
+    if (nums[pos] < target) {
+      start = pos + 1;
+    } else if (target < nums[pos]) {
+      end = pos;
     }
   }
-  return nums.length;
+  return start;
 };
 
 console.log(searchInsert([1, 3, 5, 6], 5)); // 2
