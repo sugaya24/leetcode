@@ -4,38 +4,13 @@
  * @return {number}
  */
 var strStr = function(haystack, needle) {
-  // should solve it without builtin methods.
-  if (!haystack.includes(needle)) {
-    return -1;
-  } else if (needle.length === 0) {
-    return 0;
-  } else {
-    return haystack.indexOf(needle);
+  if (!needle) return 0;
 
-    // while (i < haystack.length) {
-    // // 文字が一致しなければhaystackのindexを一つずらす
-    // if (haystack[i] !== needle[j]) {
-    //   console.log('i, j = ' + i + ', ' + j);
-    //   console.log('i, j = ' + haystack[i] + ', ' + needle[j]);
-    //   console.log('-------------');
-    //   i++;
-    //   j = 0;
-    //   // 文字が一致したらhaystackとneedleのindexを一つずらす
-    // } else if (haystack[i] === needle[j]) {
-    //   console.log('** same! -> ' + i, j);
-    //   console.log('i, j = ' + haystack[i] + ', ' + needle[j]);
-    //   console.log('==============');
-
-    //   i++;
-    //   j++;
-    //   // needleのindexがneedleのlengthと一致したら終わり
-    //   if (j === needle.length) {
-    //     console.log('Found!!!');
-    //     return i - j;
-    //   }
-    // }
-    // }
+  for (let i = 0; i < haystack.length; i++) {
+    if (haystack.slice(i, i + needle.length) === needle) return i;
   }
+
+  return -1;
 };
 
 console.log(strStr('hello', 'll')); // 2
