@@ -13,7 +13,7 @@ var romanToInt = function(s) {
   // 一番右は無条件で足す
   result += decimal[romanNum.indexOf(s[s.length - 1])];
 
-  // 一番左のローマ数字から比べる
+  // 一番右のローマ数字から比べる
   for (len = s.length - 1; len > 0; len--) {
     // currentPosition: 現在位置のローマ数字
     currentPosition = romanNum.indexOf(s[len]);
