@@ -11,24 +11,17 @@
  * @return {boolean}
  */
 var leafSimilar = function(root1, root2) {
-  return JSON.stringify(setSearch(root1)) === JSON.stringify(setSearch(root2));
+  return leafGenerator(root1) === leafGenerator(root2);
 };
 
-const setSearch = node => {
-  const arr = [];
-  const search = node => {
-    if (node.left) {
-      search(node.left);
-    }
-
-    if (node.right) {
-      search(node.right);
-    }
-
-    if (!node.left && !node.right) {
-      arr.push(node.val);
-    }
-  };
-  search(node);
-  return arr;
-};
+function leafGenerator(root) {
+  const nodes = [root];
+  const leafs = [];
+  while (nodes.length) {
+    const node = nodes.pop();
+    if (!node.left && !node.right) leafs.push(node.val);
+    if (node.right) nodes.push(node.right);
+    if (node.left) nodes.push(node.left);
+  }
+  return leafs.join('');
+}
