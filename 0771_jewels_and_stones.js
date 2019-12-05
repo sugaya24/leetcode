@@ -4,15 +4,14 @@
  * @return {number}
  */
 var numJewelsInStones = function(J, S) {
-  const jewels = J.split('');
   let count = 0;
-  jewels.forEach(jewel => {
-    for (let i = 0; i < S.length; i++) {
-      if (jewel === S[i]) {
+  for (let i = 0; i < J.length; i++) {
+    for (let j = 0; j < S.length; j++) {
+      if (J[i] === S[j]) {
         count++;
       }
     }
-  });
+  }
   return count;
 };
 
