@@ -2,23 +2,14 @@
  * @param {number[]} nums
  * @return {number}
  */
-// TLE
 var singleNumber = function(nums) {
-  const countValues = (array, value) => {
-    const counts = {};
-    for (let i = 0; i < array.length; i++) {
-      const key = array[i];
-      counts[key] = counts[key] ? counts[key] + 1 : 1;
-    }
-    return counts[value];
-  };
-  let result;
-  nums.forEach(value => {
-    if (countValues(nums, value) === 1) {
-      result = value;
-    }
+  let set = new Set();
+  nums.map(n => {
+    set.has(n) ? set.delete(n) : set.add(n);
   });
-  return result;
+  console.log(set.values().next());
+
+  return set.values().next().value;
 };
 
 console.log(singleNumber([2, 2, 1]));
