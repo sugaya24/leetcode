@@ -5,8 +5,6 @@
 var isPowerOfTwo = function(n) {
   const num = 2;
   for (let i = 0; num ** i <= n; i++) {
-    console.log(num ** i);
-
     if (num ** i === n) {
       return true;
     }
