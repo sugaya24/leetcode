@@ -13,8 +13,7 @@ var longestPalindrome = function(s) {
     if (obj[key] % 2 === 1) {
       result += obj[key] - 1;
       isExistOdd = true;
-    }
-    if (obj[key] % 2 === 0) {
+    } else {
       result += obj[key];
     }
   }
