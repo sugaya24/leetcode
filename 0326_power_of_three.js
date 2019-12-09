@@ -3,9 +3,9 @@
  * @return {boolean}
  */
 var isPowerOfThree = function(n) {
-  const num = 3;
-  for (let i = 0; num ** i <= n; i++) {
-    if (num ** i === n) return true;
+  while (n >= 1) {
+    if (n === 1) return true;
+    n = n / 3;
   }
   return false;
 };
