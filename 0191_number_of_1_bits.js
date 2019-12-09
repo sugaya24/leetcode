@@ -4,8 +4,11 @@
  */
 var hammingWeight = function(n) {
   let result = 0;
-  for (i = 0; i < n.toString(2).length; i++) {
-    if (n.toString(2)[i] === '1') result++;
+  while (n) {
+    if (n & (1 === 1)) {
+      result++;
+    }
+    n = n >>> 1;
   }
   return result;
 };
