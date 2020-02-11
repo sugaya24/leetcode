@@ -3,15 +3,8 @@
  * @return {boolean}
  */
 const hasAlternatingBits = (n) => {
-  const binary = n.toString(2);
-  for (let i = 0; i < binary.length; i++) {
-    if (
-      (i % 2 === 0 && binary[i] !== '1') ||
-      (i % 2 === 1 && binary[i] !== '0')
-    )
-      return false;
-  }
-  return true;
+  n = n ^ (n >> 1);
+  return (n & (n + 1)) === 0;
 };
 
 console.log(hasAlternatingBits(5)); // True
