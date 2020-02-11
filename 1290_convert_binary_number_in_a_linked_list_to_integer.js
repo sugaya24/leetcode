@@ -12,18 +12,8 @@
 var getDecimalValue = function(head) {
   let decimal = 0;
   while (head) {
-    if (decimal === 0) {
-      if (head.val === 1) decimal += 1;
-      head = head.next;
-      continue;
-    }
-
-    if (head.val === 1) {
-      decimal = decimal << 1;
-      decimal += 1;
-    } else if (head.val === 0) {
-      decimal = decimal << 1;
-    }
+    decimal <<= 1;
+    decimal += head.val;
     head = head.next;
   }
   return decimal;
