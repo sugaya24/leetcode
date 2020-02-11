@@ -3,16 +3,14 @@
  * @return {number}
  */
 var repeatedNTimes = function(A) {
-  let counts = {};
-  for (var i = 0; i < A.length; i++) {
-    var num = A[i];
-    counts[num] = counts[num] ? counts[num] + 1 : 1;
+  let lookup = new Set();
+
+  for (let n of A) {
+    if (lookup.has(n)) return n;
+    lookup.add(n);
   }
-  for (const count in counts) {
-    if (counts[count] === A.length / 2) {
-      return count;
-    }
-  }
+
+  return -1;
 };
 
 console.log(repeatedNTimes([1, 2, 3, 3]));
