@@ -7,9 +7,7 @@ function decompressRLElist(nums) {
   for (let i = 0; i < nums.length; i += 2) {
     const times = nums[i];
     const n = nums[i + 1];
-    for (let i = 0; i < times; i++) {
-      res.push(n);
-    }
+    res.push(...Array(times).fill(n));
   }
   return res;
 }
