@@ -3,18 +3,11 @@
  * @return {number[]}
  */
 function replaceElements(arr) {
-  const len = arr.length;
-  let max = 0;
-  max = arr.slice(1, len).sort((a, b) => b - a)[0];
-  for (let i = 0; i < len; i++) {
-    if (max === arr[i]) {
-      max = arr.slice(i + 1, len).sort((a, b) => b - a)[0];
-    }
-    if (i !== len - 1) {
-      arr[i] = max;
-    } else {
-      arr[i] = -1;
-    }
+  let right = -1;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    const cur = arr[i];
+    arr[i] = right;
+    right = Math.max(cur, right);
   }
   return arr;
 }
