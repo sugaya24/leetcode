@@ -5,12 +5,7 @@
 function findNumbers(nums) {
   let evenCount = 0;
   for (let n of nums) {
-    let digit = 0;
-    while (n >= 1) {
-      digit++;
-      n /= 10;
-    }
-    if (digit % 2 === 0) evenCount++;
+    if (n.toString().length % 2 === 0) evenCount++;
   }
   return evenCount;
 }
