@@ -5,26 +5,21 @@
  */
 function countCharacters(words, chars) {
   let res = 0;
-  chars = chars.split('');
-  const countChars = (str) => {
-    const counts = new Map();
-    for (const s of str) {
-      counts.set(s, (counts.get(s) || 0) + 1);
-    }
-    return counts;
-  };
+  const count = [];
+  for (const char of chars) {
+    count[char] = count[char] = (count[char] || 0) + 1;
+  }
   for (const word of words) {
-    let flag = true;
-    for (const count of countChars(word)) {
-      if (
-        !countChars(chars).get(count[0]) ||
-        count[1] > countChars(chars).get(count[0])
-      ) {
-        flag = false;
+    const wordCount = [];
+    let structurable = true;
+    for (const char of word) {
+      wordCount[char] = (wordCount[char] || 0) + 1;
+      if (!count[char] || wordCount[char] > count[char]) {
+        structurable = false;
         break;
       }
     }
-    if (flag) res += word.length;
+    if (structurable) res += word.length;
   }
   return res;
 }
