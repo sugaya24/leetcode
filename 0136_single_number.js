@@ -3,13 +3,10 @@
  * @return {number}
  */
 var singleNumber = function(nums) {
-  let set = new Set();
-  nums.map(n => {
-    set.has(n) ? set.delete(n) : set.add(n);
-  });
-  console.log(set.values().next());
-
-  return set.values().next().value;
+  nums.sort();
+  for (let i = 0; i < nums.length; i += 2) {
+    if (nums[i] !== nums[i + 1]) return nums[i];
+  }
 };
 
 console.log(singleNumber([2, 2, 1]));
