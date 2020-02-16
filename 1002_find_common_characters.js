@@ -3,23 +3,16 @@
  * @return {string[]}
  */
 function commonChars(A) {
-  let res = A[0].split('');
-  for (let i = 0; i < A.length; i++) {
-    res = findCommon(res, A[i].split(''));
+  let str = A[0].split('');
+  for (let i = 1; i < A.length; i++) {
+    let tmpStr = A[i].split('');
+    str = str.filter((char) => {
+      let idx = tmpStr.indexOf(char);
+      return idx > -1 ? (tmpStr[idx] = true) : false;
+    });
   }
-  return res;
+  return str;
 }
-
-const findCommon = (arr, other) => {
-  return arr.filter((char) => {
-    let i = other.indexOf(char);
-    if (i !== -1) {
-      other.splice(i, 1);
-      return true;
-    }
-    return false;
-  });
-};
 
 console.log(commonChars(['bella', 'label', 'roller']));
 console.log(commonChars(['cool', 'lock', 'cook']));
