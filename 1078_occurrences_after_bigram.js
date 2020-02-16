@@ -7,11 +7,8 @@
 function findOccurrences(text, first, second) {
   const res = [];
   text = text.split(' ');
-  const search = [first, second];
   for (let i = 0; i < text.length - 2; i++) {
-    if (JSON.stringify([text[i], text[i + 1]]) === JSON.stringify(search)) {
-      res.push(text[i + 2]);
-    }
+    if (text[i] === first && text[i + 1] === second) res.push(text[i + 2]);
   }
   return res;
 }
