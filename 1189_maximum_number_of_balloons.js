@@ -5,7 +5,9 @@
 function maxNumberOfBalloons(text) {
   let count = 0;
   const map = new Map();
+  const str = new Set('balloon');
   for (const char of text) {
+    if (!str.has(char)) continue;
     map.set(char, (map.get(char) || 0) + 1);
     if (
       map.get('b') > 0 &&
