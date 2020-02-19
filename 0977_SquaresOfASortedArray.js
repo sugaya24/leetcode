@@ -3,7 +3,19 @@
  * @return {number[]}
  */
 var sortedSquares = function(A) {
-  return A.map(x => x ** 2).sort((a, b) => (a < b ? -1 : 1));
+  const res = Array(A.length);
+  let left = 0;
+  let right = A.length - 1;
+  let index = A.length - 1;
+
+  while (index >= 0) {
+    if (A[left] ** 2 > A[right] ** 2) {
+      res[index--] = A[left++] ** 2;
+    } else {
+      res[index--] = A[right--] ** 2;
+    }
+  }
+  return res;
 };
 
 console.log(sortedSquares([-4, -1, 0, 3, 10]));
