@@ -4,17 +4,17 @@
  * @return {number[]}
  */
 function shortestToChar(S, C) {
-  S = S.split('');
-  const res = Array(S.length);
-  for (let i = 0; i < S.length; i++) {
-    for (let j = 0; j < S.length; j++) {
-      let left = S[i - j];
-      let right = S[i + j];
-      if (left === C || right === C) {
-        res[i] = j;
-        break;
-      }
-    }
+  let len = S.length;
+  const res = Array(len);
+  for (let i = 0; i < len; ++i) {
+    res[i] = S.charAt(i) === C ? 0 : len;
+  }
+  for (let i = 1; i < len; ++i) {
+    res[i] = Math.min(res[i], res[i - 1] + 1);
+    // console.log(res[i]);
+  }
+  for (let i = len - 2; i >= 0; --i) {
+    res[i] = Math.min(res[i], res[i + 1] + 1);
   }
   return res;
 }
