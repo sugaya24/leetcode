@@ -3,8 +3,7 @@
  * @return {number}
  */
 function heightChecker(heights) {
-  let ascending = JSON.parse(JSON.stringify(heights));
-  ascending.sort((a, b) => a - b);
+  let ascending = [...heights].sort((a, b) => a - b);
   let count = 0;
   for (let i = 0; i < heights.length; i++) {
     if (heights[i] !== ascending[i]) count++;
