@@ -10,9 +10,10 @@
  * @return {number}
  */
 function lengthOfLastWord(s) {
-  const copy = s.split(' ');
-  const res = copy.filter((n) => n.length > 0);
-  return res[res.length - 1] ? res[res.length - 1].length : 0;
+  return s
+    .trim()
+    .split(' ')
+    .pop().length;
 }
 // @lc code=end
 console.log(lengthOfLastWord('hello ')); //5
