@@ -14,8 +14,8 @@ function subtractProductAndSum(n) {
   let product = 1;
   let sum = 0;
   for (const num of n) {
-    product *= parseInt(num);
-    sum += parseInt(num);
+    product *= Number(num);
+    sum += Number(num);
   }
   return product - sum;
 }
