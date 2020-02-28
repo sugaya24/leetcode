@@ -10,17 +10,7 @@
  * @return {number}
  */
 function maximum69Number(num) {
-  let res = num.toString().split('');
-  let flag = true;
-  for (let i = 0; i < res.length; i++) {
-    if (flag && res[i] === '6') {
-      res[i] = 9;
-      flag = false;
-    } else {
-      res[i] = Number(res[i]);
-    }
-  }
-  return res.join('');
+  return num.toString().replace('6', '9');
 }
 // @lc code=end
 
