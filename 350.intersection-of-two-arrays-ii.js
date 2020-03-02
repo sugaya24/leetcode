@@ -11,11 +11,15 @@
  * @return {number[]}
  */
 function intersect(nums1, nums2) {
+  const map = new Map();
+  for (const n of nums1) {
+    map.set(n, (map.get(n) || 0) + 1);
+  }
   const res = [];
   for (const n of nums2) {
-    if (nums1.indexOf(n) > -1) {
-      res.push(nums1[nums1.indexOf(n)]);
-      nums1.splice(nums1.indexOf(n), 1);
+    if (map.has(n) && map.get(n) > 0) {
+      res.push(n);
+      map.set(n, map.get(n) - 1);
     }
   }
   return res;
