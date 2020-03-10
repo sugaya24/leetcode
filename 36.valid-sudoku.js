@@ -12,38 +12,30 @@
 function isValidSudoku(board) {
   for (let i = 0; i < board.length; i++) {
     const row = new Set();
-    for (let j = 0; j < board.length; j++) {
-      const num = board[i][j];
-      if (num === '.') continue;
-      if (row.has(num)) {
-        return false;
-      } else {
-        row.add(num);
-      }
-    }
-
     const col = new Set();
-    for (let j = 0; j < board.length; j++) {
-      const num = board[j][i];
-      if (num === '.') continue;
-      if (col.has(num)) {
-        return false;
-      } else {
-        col.add(num);
-      }
-    }
-
     const box = new Set();
+
     for (let j = 0; j < board.length; j++) {
-      const num =
+      const _row = board[i][j];
+      const _col = board[j][i];
+      const _box =
         board[3 * Math.floor(i / 3) + Math.floor(j / 3)][
           ((i * 3) % 9) + (j % 3)
         ];
-      if (num === '.') continue;
-      if (box.has(num)) {
-        return false;
-      } else {
-        box.add(num);
+
+      if (_row !== '.') {
+        if (row.has(_row)) return false;
+        row.add(_row);
+      }
+
+      if (_col !== '.') {
+        if (col.has(_col)) return false;
+        col.add(_col);
+      }
+
+      if (_box !== '.') {
+        if (box.has(_box)) return false;
+        box.add(_box);
       }
     }
   }
