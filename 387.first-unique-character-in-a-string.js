@@ -10,15 +10,10 @@
  * @return {number}
  */
 function firstUniqChar(s) {
-  let minIndex = s.length;
-  const map = new Map();
   for (let i = 0; i < s.length; i++) {
-    map.set(s[i], (map.get(s[i]) || 0) + 1);
+    if (s.indexOf(s[i]) === s.lastIndexOf(s[i])) return i;
   }
-  for (const [key, value] of map) {
-    if (value < 2) minIndex = Math.min(s.indexOf(key), minIndex);
-  }
-  return minIndex < s.length ? minIndex : -1;
+  return -1;
 }
 // @lc code=end
 
