@@ -10,17 +10,13 @@
  * @return {number}
  */
 function reverse(x) {
-  let res;
-  const negative = x < 0 ? true : false;
-  res = x.toString().split('');
-  if (negative) res.shift();
-  for (let i = 0; i < res.length / 2; i++) {
-    [res[i], res[res.length - 1 - i]] = [res[res.length - 1 - i], res[i]];
-  }
-  if (negative) res.unshift('-');
-  res = Number(res.join(''));
+  let res = Math.abs(x)
+    .toString()
+    .split('')
+    .reverse()
+    .join('');
 
-  return -(2 ** 31) < res && res < 2 ** 31 - 1 ? res : 0;
+  return -(2 ** 31) < res && res < 2 ** 31 - 1 ? Math.sign(x) * +res : 0;
 }
 // @lc code=end
 
