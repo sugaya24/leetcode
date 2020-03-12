@@ -12,18 +12,8 @@
 function numUniqueEmails(emails) {
   const set = new Set();
   for (let email of emails) {
-    const plusIndex = email.indexOf('+');
-    const atIndex = email.indexOf('@');
-    if (plusIndex >= 0) {
-      email =
-        email.slice(0, plusIndex).replace(/\./g, '') +
-        email.slice(atIndex, email.length);
-    } else {
-      email =
-        email.slice(0, atIndex).replace(/\./g, '') +
-        email.slice(atIndex, email.length);
-    }
-    if (!set.has(email)) set.add(email);
+    let [local, domain] = email.split('@');
+    set.add(local.split('+')[0].replace(/\./g, '') + '@' + domain);
   }
   return set.size;
 }
