@@ -11,11 +11,10 @@
  * @return {boolean}
  */
 function containsNearbyDuplicate(nums, k) {
+  const map = new Map();
   for (let i = 0; i < nums.length; i++) {
-    const start = i - k < 0 ? 0 : i - k;
-    const end = k + i;
-    const range = nums.slice(start, end);
-    if (range.indexOf(nums[i]) !== range.lastIndexOf(nums[i])) return true;
+    if (i - map.get(nums[i]) <= k) return true;
+    map.set(nums[i], i);
   }
   return false;
 }
