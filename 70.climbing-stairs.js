@@ -10,10 +10,14 @@
  * @return {number}
  */
 var climbStairs = function (n) {
-  const arr = [1, 1];
-  for (let i = 2; i <= n; i++) {
-    arr.push(arr[i - 2] + arr[i - 1]);
-  }
-  return arr[arr.length - 1];
+  const memo = new Map();
+  const cs = (n) => {
+    if (!memo.has(n)) {
+      const res = n < 2 ? 1 : cs(n - 2) + cs(n - 1);
+      memo.set(n, res);
+    }
+    return memo.get(n);
+  };
+  return cs(n);
 };
 // @lc code=end
