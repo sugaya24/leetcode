@@ -18,15 +18,19 @@
  * @return {boolean}
  */
 const isSymmetric = (root) => {
-  return helper(root, root);
-};
-const helper = (p, q) => {
-  if (p === null && q === null) {
-    return true;
+  const queue = [];
+  queue.push(root, root);
+  while (queue.length > 0) {
+    const node1 = queue.shift();
+    const node2 = queue.shift();
+
+    if (node1 === null && node2 === null) continue;
+    if (node1 === null || node2 === null) return false;
+    if (node1.val !== node2.val) return false;
+
+    queue.push(node1.left, node2.right);
+    queue.push(node1.right, node2.left);
   }
-  if (p === null || q === null) {
-    return false;
-  }
-  return p.val === q.val && helper(p.left, q.right) && helper(p.right, q.left);
+  return true;
 };
 // @lc code=end
