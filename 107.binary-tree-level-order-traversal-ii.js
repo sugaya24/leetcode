@@ -25,7 +25,6 @@ const levelOrderBottom = (root) => {
 };
 
 const dfs = (tree, arr, count = 1) => {
-  console.log('arr', arr);
   if (arr.length < count) {
     arr.unshift([tree.val]);
   } else {
