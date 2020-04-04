@@ -19,15 +19,13 @@
  */
 var postorder = function (root) {
   const res = [];
-  helper(root);
-  return res;
-
-  function helper(node) {
-    if (!node) return;
-    for (const child of node.children) {
-      helper(child);
-    }
-    res.push(node.val);
+  const stack = [root];
+  while (stack.length) {
+    const cur = stack.pop();
+    if (!cur) continue;
+    res.push(cur.val);
+    stack.push(...cur.children);
   }
+  return res.reverse();
 };
 // @lc code=end
