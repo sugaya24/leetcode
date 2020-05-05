@@ -1,15 +1,15 @@
 const firstUniqChar = (s) => {
   const map = new Map();
-  for (const ch of s) {
-    map.set(ch, map.get(ch) + 1 || 1);
+  for (let i = 0; i < s.length; i++) {
+    if (map.has(s[i])) {
+      map.set(s[i], -1);
+    } else {
+      map.set(s[i], 1);
+    }
   }
 
-  map.forEach((value, ch) => {
-    if (value > 1) map.delete(ch);
-  });
-
   for (let i = 0; i < s.length; i++) {
-    if (map.has(s[i])) return i;
+    if (map.get(s[i]) === 1) return i;
   }
 
   return -1;
