@@ -3,10 +3,8 @@
  * @return {number}
  */
 const maximumWealth = (accounts) => {
-  let maxWealth = 0;
-  for (let i = 0; i < accounts.length; i++) {
-    const wealth = accounts[i].reduce((acc, cur) => acc + cur, 0);
-    if (wealth > maxWealth) maxWealth = wealth;
-  }
+  const maxWealth = Math.max(
+    ...accounts.map((account) => account.reduce((acc, cur) => acc + cur), 0)
+  );
   return maxWealth;
 };
