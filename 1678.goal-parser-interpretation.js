@@ -3,10 +3,7 @@
  * @return {string}
  */
 function interpret(command) {
-  let res = command;
-  res = res.replace(/\(\)/g, 'o');
-  res = res.replace(/\(al\)/g, 'al');
-  return res;
+  return command.replace(/\(\)/g, 'o').replace(/\(al\)/g, 'al');
 }
 
 console.log(interpret('G()()()(al)'));
