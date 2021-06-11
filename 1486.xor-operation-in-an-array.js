@@ -4,9 +4,9 @@
  * @return {number}
  */
 function xorOperation(n, start) {
-  const arr = [];
+  let res = 0;
   for (let i = 0; i < n; i++) {
-    arr.push(start + 2 * i);
+    res ^= start + i * 2;
   }
-  return arr.reduce((acc, cur) => acc ^ cur);
+  return res;
 }
