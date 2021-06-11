@@ -3,11 +3,7 @@
  * @return {boolean}
  */
 function checkIfPangram(sentence) {
-  const allAlphabet = 'abcdefghijklmnopqrstuvwxyz';
-  for (const c of allAlphabet) {
-    if (sentence.indexOf(c) === -1) return false;
-  }
-  return true;
+  return new Set(sentence).size === 26;
 }
 
 console.log(checkIfPangram('thequickbrownfoxjumpsoverthelazydog')); // ture
