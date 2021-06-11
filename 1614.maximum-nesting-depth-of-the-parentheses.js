@@ -7,11 +7,10 @@ function maxDepth(s) {
   let curDepth = 0;
   for (let i = 0; i < s.length; i++) {
     if (s[i] === '(') {
-      curDepth++;
+      maxDepth = Math.max(maxDepth, ++curDepth);
     } else if (s[i] === ')') {
       curDepth--;
     }
-    if (curDepth > maxDepth) maxDepth = curDepth;
   }
   return maxDepth;
 }
