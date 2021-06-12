@@ -3,13 +3,11 @@
  * @return {string}
  */
 function sortSentence(s) {
-  const arr = s.split(' ');
-  const newArr = [];
-  for (const str of arr) {
-    const idx = str[str.length - 1];
-    newArr[idx - 1] = str.slice(0, -1);
-  }
-  return newArr.join(' ');
+  return s
+    .split(' ')
+    .sort((a, b) => a[a.length - 1] - b[b.length - 1])
+    .map((word) => word.slice(0, word.length - 1))
+    .join(' ');
 }
 
 console.log(sortSentence('is2 sentence4 This1 a3'));
