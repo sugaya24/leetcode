@@ -13,13 +13,9 @@
 function selfDividingNumbers(left, right) {
   const res = [];
   for (let i = left; i <= right; i++) {
-    let flag = true;
-    for (const c of i.toString()) {
-      if (i % +c !== 0) {
-        flag = false;
-      }
-    }
-    if (flag) res.push(i);
+    String(i)
+      .split('')
+      .every((num) => +num && !(i % num)) && res.push(i);
   }
   return res;
 }
