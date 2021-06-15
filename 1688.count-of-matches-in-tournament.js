@@ -3,17 +3,13 @@
  * @return {number}
  */
 function numberOfMatches(n) {
-  let matchesCount = 0;
-  while (n > 1) {
-    if (isEven(n)) {
-      matchesCount += n / 2;
-      n /= 2;
-    } else {
-      matchesCount += Math.floor(n / 2);
-      n = Math.floor(n / 2) + 1;
-    }
+  if (n === 1) return n - 1;
+
+  if (isEven(n)) {
+    return n / 2 + numberOfMatches(n / 2);
+  } else {
+    return Math.floor(n / 2) + 1 + numberOfMatches(Math.floor(n / 2));
   }
-  return matchesCount;
 }
 
 const isEven = (n) => {
