@@ -12,6 +12,6 @@ function sumOddLengthSubarrays(arr) {
   return res;
 }
 
-console.log(sumOddLengthSubarrays([1, 4, 2, 5, 3]));
-console.log(sumOddLengthSubarrays([1, 2]));
-console.log(sumOddLengthSubarrays([10, 11, 12]));
+console.log(sumOddLengthSubarrays([1, 4, 2, 5, 3])); //58
+console.log(sumOddLengthSubarrays([1, 2])); //3
+console.log(sumOddLengthSubarrays([10, 11, 12])); //66
