@@ -4,20 +4,13 @@
  * @return {number}
  */
 function countConsistentStrings(allowed, words) {
-  const set = new Set();
+  const set = new Set(allowed);
   let count = 0;
-  for (const s of allowed) {
-    set.add(s);
-  }
-  for (const word of words) {
-    let flag = true;
+  outer: for (const word of words) {
     for (const s of word) {
-      if (!set.has(s)) {
-        flag = false;
-        break;
-      }
+      if (!set.has(s)) continue outer;
     }
-    if (flag) count++;
+    count++;
   }
   return count;
 }
