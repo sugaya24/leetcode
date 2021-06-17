@@ -4,7 +4,11 @@
  * @return {string}
  */
 function truncateSentence(s, k) {
-  return s.split(' ').splice(0, k).join(' ');
+  let spaceCount = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === ' ' && ++spaceCount === k) return s.slice(0, i);
+  }
+  return s;
 }
 
 console.log(truncateSentence('Hello how are you Contestant', 4));
