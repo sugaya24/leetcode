@@ -4,17 +4,14 @@
  */
 function replaceDigits(s) {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-  const alphabetSet = new Set(alphabet);
-  const strArr = s.split('');
-  for (let i = 0; i < s.length; i++) {
-    if (alphabetSet.has(s[i])) {
-      strArr[i] = s[i];
-    } else {
-      const index = alphabet.indexOf(s[i - 1]) + +s[i];
-      strArr[i] = alphabet[index];
+  const sArr = s.split('');
+  for (let i = 0; i < sArr.length; i++) {
+    if (alphabet.indexOf(sArr[i]) === -1) {
+      const index = alphabet.indexOf(sArr[i - 1]) + +sArr[i];
+      sArr[i] = alphabet[index];
     }
   }
-  return strArr.join('');
+  return sArr.join('');
 }
 
 console.log(replaceDigits('a1c1e1'));
