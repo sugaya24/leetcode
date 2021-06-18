@@ -4,8 +4,7 @@
  * @return {boolean[]}
  */
 function kidsWithCandies(candies, extraCandies) {
-  let maxCount = 0;
-  candies.forEach((candyCount) => (maxCount = Math.max(maxCount, candyCount)));
+  const maxCount = Math.max(...candies);
   return candies.map((candyCount) => candyCount + extraCandies >= maxCount);
 }
 
