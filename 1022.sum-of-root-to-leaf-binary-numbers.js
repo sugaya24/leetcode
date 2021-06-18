@@ -17,14 +17,10 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var sumRootToLeaf = function (root, sum = '') {
+function sumRootToLeaf(root, sum = '') {
   if (!root) return 0;
-
   const nextSum = sum + root.val;
-  if (!root.left && !root.right) {
-    return parseInt(nextSum, 2);
-  }
-
+  if (!root.left && !root.right) return parseInt(nextSum, 2);
   return sumRootToLeaf(root.left, nextSum) + sumRootToLeaf(root.right, nextSum);
-};
+}
 // @lc code=end
