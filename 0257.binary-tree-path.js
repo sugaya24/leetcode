@@ -17,15 +17,15 @@ function binaryTreePaths(root) {
     // 存在しないノードの処理
     if (!node) return path;
     // ここまでの文字列を作る
-    currentPath += node.val + '->';
+    currentPath += node.val;
     // 末尾なら path.push してreturn
     if (!node.left && !node.right) {
-      path.push(currentPath.slice(0, currentPath.length - 2));
+      path.push(currentPath);
       return;
     }
     // そうでなければ左右呼び出し
-    dfs(node.left, currentPath);
-    dfs(node.right, currentPath);
+    dfs(node.left, currentPath + '->');
+    dfs(node.right, currentPath + '->');
   }
   dfs(root, '');
 
