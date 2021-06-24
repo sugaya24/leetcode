@@ -1,48 +1,22 @@
 function numberOfRounds(startTime: string, finishTime: string): number {
-  let playedRounds = 0;
-  let [sh, sm]: number[] = startTime.split(':').map((t) => +t);
-  let [fh, fm]: number[] = finishTime.split(':').map((t) => +t);
-  // startTimeよりfinishTimeの方が早い場合
-  if (fh < sh || (fh === sh && fm < sm)) {
-    fh += 24;
+  let startH = parseInt(startTime.substring(0, 2)),
+    startM = parseInt(startTime.substring(3)),
+    finishH = parseInt(finishTime.substring(0, 2)),
+    finishM = parseInt(finishTime.substring(3)),
+    ans = 0,
+    addition = 0,
+    startInMin: number,
+    finishInMin: number;
+  if (finishH < startH || (finishH === startH && finishM < startM)) {
+    //Add 24*60 minutes if finish time is less than start time
+    addition = 24 * 60;
   }
-  // startHourとfinishHourが同じ場合
-  if (sh === fh) {
-    for (let i = sm; i <= fm; i++) {
-      if (i === 0) playedRounds++;
-      if (i === 15) playedRounds++;
-      if (i === 30) playedRounds++;
-      if (i === 45) playedRounds++;
-    }
-    playedRounds -= 1;
-    if (playedRounds > 0) {
-      return playedRounds;
-    } else {
-      return 0;
-    }
+  startInMin = startH * 60 + startM;
+  finishInMin = finishH * 60 + finishM + addition;
+  for (let i = startInMin; i <= finishInMin; i++) {
+    if (i % 15 === 0) ans++;
   }
-  // startHourとfinishHourが違う場合
-  // fh - sh - 1 が間の時間
-  // 間の時間は必ずラウンド * 4回プレイしているのでまずカウント
-  playedRounds += (fh - sh - 1) * 4;
-  if (sm === 0) {
-    playedRounds += 4;
-  } else if (0 < sm && sm < 15) {
-    playedRounds += 3;
-  } else if (15 <= sm && sm <= 30) {
-    playedRounds += 2;
-  } else if (30 <= sm && sm <= 45) {
-    playedRounds++;
-  }
-  if (15 <= fm && fm < 30) {
-    playedRounds++;
-  } else if (30 <= fm && fm < 45) {
-    playedRounds += 2;
-  } else if (45 <= fm && fm <= 59) {
-    playedRounds += 3;
-  }
-
-  return playedRounds;
+  return ans === 0 || ans === 1 ? 0 : ans - 1;
 }
 
 console.log(numberOfRounds('00:00', '00:35')); // 2
