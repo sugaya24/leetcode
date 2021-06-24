@@ -13,8 +13,19 @@ function numberOfRounds(startTime: string, finishTime: string): number {
   }
   startInMin = startH * 60 + startM;
   finishInMin = finishH * 60 + finishM + addition;
-  for (let i = startInMin; i <= finishInMin; i++) {
-    if (i % 15 === 0) ans++;
+  // 最初の15区切りの地点までcount++でループ
+  // それ以降は+15でカウントする
+  let i = startInMin,
+    flag = false;
+  while (true) {
+    if (i % 15 === 0 || flag) {
+      i += 15;
+      ans++;
+      flag = true;
+    } else {
+      i++;
+    }
+    if (i > finishInMin) break;
   }
   return ans === 0 || ans === 1 ? 0 : ans - 1;
 }
