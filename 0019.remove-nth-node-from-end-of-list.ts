@@ -11,23 +11,16 @@
  */
 
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
-  // dummy nodeを作る
-  let dummy = new ListNode(-1);
-  dummy.next = head;
-  // runnerとwalkerを作る
-  // runnerとwalkerのポインタはdummy(headの前)
-  let runner = dummy,
-    walker = dummy;
-  // runnerをn+1まで進める
-  for (let i = 1; i <= n + 1; i++) {
-    runner = runner.next;
+  let fast = head,
+    slow = head;
+  for (let i = 0; i < n; i++) {
+    fast = fast.next;
   }
-  // runnerが最後のnodeに当たるまでrunnerとwalkerを進める
-  while (runner !== null) {
-    runner = runner.next;
-    walker = walker.next;
+  if (!fast) return head.next;
+  while (fast.next) {
+    fast = fast.next;
+    slow = slow.next;
   }
-  // walker.nextにrunner.next.nextを入れる
-  walker.next = walker.next.next;
-  return dummy.next;
+  slow.next = slow.next.next;
+  return head;
 }
