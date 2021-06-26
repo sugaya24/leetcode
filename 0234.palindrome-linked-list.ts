@@ -11,14 +11,32 @@
  */
 
 function isPalindrome(head: ListNode | null): boolean {
-  const arr: number[] = [];
-  while (head !== null) {
-    arr.push(head.val);
-    head = head.next;
+  let slow = head,
+    fast = head,
+    prev,
+    temp;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
   }
-  const midIndex = Math.floor(arr.length / 2);
-  for (let i = 0; i <= midIndex; i++) {
-    if (arr[arr.length - 1 - i] !== arr[i]) return false;
+  prev = slow;
+  slow = slow.next;
+  prev.next = null;
+  while (slow) {
+    temp = slow.next;
+    slow.next = prev;
+    prev = slow;
+    slow = temp;
+  }
+  fast = head;
+  slow = prev;
+  while (slow) {
+    if (fast.val !== slow.val) {
+      return false;
+    } else {
+      fast = fast.next;
+      slow = slow.next;
+    }
   }
   return true;
 }
