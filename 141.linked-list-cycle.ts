@@ -11,13 +11,13 @@
  */
 
 function hasCycle(head: ListNode | null): boolean {
-  if (head === null || head.next === null) return false;
-  let walker = head,
-    runner = head.next;
-  while (runner.next && runner.next.next) {
-    walker = walker.next;
-    runner = runner.next.next;
-    if (walker === runner) return true;
+  if (!head || !head.next) return false;
+  // 参照入れてSetで探す
+  const set = new Set();
+  while (head.next) {
+    if (set.has(head)) return true;
+    set.add(head);
+    head = head.next;
   }
   return false;
 }
