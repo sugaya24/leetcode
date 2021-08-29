@@ -1,4 +1,10 @@
 function isValid(s: string): boolean {
+  const map = new Map([
+    [')', '('],
+    ['}', '{'],
+    [']', '['],
+  ]);
+  console.log(map);
   const arr = s.split('');
   const stack = [];
   for (let i = 0; i < arr.length; i++) {
@@ -17,9 +23,9 @@ function isValid(s: string): boolean {
   return stack.length === 0;
 }
 
-console.log(isValid('()'));
-console.log(isValid('()[]{}'));
-console.log(isValid('(]'));
-console.log(isValid('([)]'));
-console.log(isValid('['));
-console.log(isValid('(])'));
+// console.log(isValid('()'));
+// console.log(isValid('()[]{}'));
+// console.log(isValid('(]'));
+// console.log(isValid('([)]'));
+// console.log(isValid('['));
+// console.log(isValid('(])'));
