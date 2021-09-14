@@ -1,35 +1,18 @@
 function interchangeableRectangles(rectangles: number[][]): number {
-  // 二重ループできない
-  // 内側と外側の掛け算では10**5**2に耐えられない
-  // ループできないなら一旦ソート？
-  // 割り切れなかったらどうする？
   const map = new Map();
   for (let i = 0; i < rectangles.length; i++) {
-    if (!map.has(rectangles[i][0] / rectangles[i][1])) {
-      map.set(rectangles[i][0] / rectangles[i][1], 1);
-    } else {
-      map.set(
-        rectangles[i][0] / rectangles[i][1],
-        map.get(rectangles[i][0] / rectangles[i][1]) + 1
-      );
-    }
+    map.set(
+      rectangles[i][0] / rectangles[i][1],
+      (map.get(rectangles[i][0] / rectangles[i][1]) || 0) + 1
+    );
   }
   let count = 0;
-  const mapArr = [...map];
-  for (let i = 0; i < mapArr.length; i++) {
-    if (mapArr[i][1] > 1) {
-      count += (mapArr[i][1] * (mapArr[i][1] - 1)) / 2;
+  for (const [key, value] of map) {
+    if (value > 1) {
+      count += (value * (value - 1)) / 2;
     }
   }
   return count;
-}
-
-function factorial(n: number) {
-  let num = 0;
-  for (let i = n; i > 0; i--) {
-    num += i;
-  }
-  return num;
 }
 
 // console.log(
