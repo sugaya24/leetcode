@@ -15,19 +15,15 @@ function getIntersectionNode(
   headB: ListNode | null
 ): ListNode | null {
   if (!headA || !headB) return null;
-  let curA = headA;
-  let curB = headB;
-  while (curA !== curB) {
-    if (curA === null) {
-      curA = headB;
-    } else {
-      curA = curA.next;
-    }
-    if (curB === null) {
-      curB = headA;
-    } else {
-      curB = curB.next;
-    }
+  const set = new Set();
+  while (headA) {
+    set.add(headA);
+    headA = headA.next;
   }
-  return curA;
+  while (headB) {
+    if (set.has(headB)) {
+      return headB;
+    }
+    headB = headB.next;
+  }
 }
