@@ -11,13 +11,15 @@
  */
 
 function hasCycle(head: ListNode | null): boolean {
-  if (!head || !head.next) return false;
-  // 参照入れてSetで探す
+  if (head === null) return false;
   const set = new Set();
-  while (head.next) {
-    if (set.has(head)) return true;
-    set.add(head);
-    head = head.next;
+  while (head.next !== null) {
+    if (!set.has(head)) {
+      set.add(head);
+      head = head.next;
+    } else {
+      return true;
+    }
   }
   return false;
 }
