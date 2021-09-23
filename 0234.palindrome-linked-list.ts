@@ -11,32 +11,24 @@
  */
 
 function isPalindrome(head: ListNode | null): boolean {
-  let slow = head,
-    fast = head,
-    prev,
-    temp;
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
-  }
-  prev = slow;
-  slow = slow.next;
-  prev.next = null;
-  while (slow) {
-    temp = slow.next;
-    slow.next = prev;
-    prev = slow;
-    slow = temp;
-  }
-  fast = head;
-  slow = prev;
-  while (slow) {
-    if (fast.val !== slow.val) {
-      return false;
-    } else {
-      fast = fast.next;
+  function isPalindrome(head: ListNode | null): boolean {
+    if (head.next === null) return true;
+    let slow = head,
+      fast = head;
+    const stack = [];
+    while (fast.next !== null && fast.next.next !== null) {
+      stack.push(slow.val);
       slow = slow.next;
+      fast = fast.next.next;
     }
+    // is Even
+    if (fast.next !== null) {
+      stack.push(slow.val);
+    }
+    while (slow.next !== null) {
+      slow = slow.next;
+      if (stack.pop() !== slow.val) return false;
+    }
+    return true;
   }
-  return true;
 }
