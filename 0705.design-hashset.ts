@@ -10,7 +10,7 @@ class MyHashSet {
 
   remove(key: number): void {
     const index = this.array.indexOf(key);
-    this.array.splice(index, 1);
+    if (index !== -1) this.array.splice(index, 1);
   }
 
   contains(key: number): boolean {
