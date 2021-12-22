@@ -1,0 +1,19 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/sugaya24/leetcode.git",
+  "author": "YukiSugaya <sugaya324@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "jest": "^27.4.5",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.5.4"
+  },
+  "scripts": {
+    "test": "jest",
+    "testw": "jest --watch",
+    "testwa": "jest --watchAll"
+  }
+}
