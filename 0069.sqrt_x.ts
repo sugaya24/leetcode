@@ -1,7 +1,15 @@
 function mySqrt(x: number): number {
-  for (let i = 0; i <= x; i++) {
-    if (i ** 2 <= x && x < (i + 1) ** 2) {
-      return i;
+  let left = 0,
+    right = x;
+  while (left <= right) {
+    const mid = Math.ceil((left + right) / 2);
+    if (mid * mid <= x && x < (mid + 1) ** 2) {
+      return mid;
+    }
+    if (x < mid ** 2) {
+      right = mid - 1;
+    } else {
+      left = mid + 1;
     }
   }
 }

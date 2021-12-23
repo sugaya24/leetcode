@@ -6,6 +6,6 @@ test('0', () => {
 test('1', () => {
   expect(mySqrt(8)).toBe(2);
 });
-test('1', () => {
+test('2', () => {
   expect(mySqrt(0)).toBe(0);
 });
