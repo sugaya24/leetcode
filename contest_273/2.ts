@@ -29,15 +29,11 @@ export function executeInstructions(
         curPos[1] < 0 ||
         n - 1 < curPos[1]
       ) {
-        ans.push(count);
-        count = 0;
         break;
       }
       count++;
-      if (j === s.length - 1) {
-        ans.push(count);
-      }
     }
+    ans.push(count);
   }
   return ans;
 }
