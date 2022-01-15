@@ -6,6 +6,6 @@ test('0', () => {
 test('1', () => {
   expect(search([-1, 0, 3, 5, 9, 12], 2)).toBe(-1);
 });
-// test('2', () => {
-//   expect(search()).toBe()
-// });
+test('2', () => {
+  expect(search([5], 5)).toBe(0);
+});
