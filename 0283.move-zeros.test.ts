@@ -19,3 +19,13 @@ test('1', () => {
   });
   expect(values.length).toBe(expectedArray.length);
 });
+
+test('1', () => {
+  const values = [0, 0, 1];
+  const expectedArray = [1, 0, 0];
+  moveZeroes(values);
+  values.forEach((n, i) => {
+    expect(n).toBe(expectedArray[i]);
+  });
+  expect(values.length).toBe(expectedArray.length);
+});
