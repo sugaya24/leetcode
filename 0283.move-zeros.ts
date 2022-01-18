@@ -10,7 +10,7 @@ export function moveZeroes(nums: number[]): void {
       i--;
     }
   }
-  for (let i = 0; i < zeroCount; i++) {
+  while (zeroCount--) {
     nums.push(0);
   }
 }
