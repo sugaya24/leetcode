@@ -1,9 +1,9 @@
 export function twoSum(numbers: number[], target: number): number[] {
-  for (let i = 0; i < numbers.length; i++) {
-    for (let j = i + 1; j < numbers.length; j++) {
-      if (numbers[j] + numbers[i] === target) {
-        return [i + 1, j + 1];
-      }
-    }
+  let len = numbers.length;
+  let i = 0;
+  let j = len - 1;
+  while (numbers[i] + numbers[j] !== target) {
+    numbers[i] + numbers[j] < target ? i++ : j--;
   }
+  return [i + 1, j + 1];
 }
