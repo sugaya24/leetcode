@@ -1,13 +1,14 @@
 export function freqAlphabets(s: string): string {
-  const alphabet = '_abcdefghijklmnopqrstuvwxyz';
+  const CHAR_CODE_OFFSET = 96;
   let result = '';
-  for (let i = s.length - 1; i >= 0; i--) {
-    if (s[i] === '#') {
-      result = alphabet[parseInt(s[i - 2] + s[i - 1])] + result;
-      i -= 2;
-    } else {
-      result = alphabet[parseInt(s[i])] + result;
+  for (let i = 0; i < s.length; i++) {
+    let cur = s[i];
+    console.log(s[i + 2]);
+    if (s[i + 2] === '#') {
+      cur = s.slice(i, i + 2);
+      i += 2;
     }
+    result += String.fromCharCode(parseInt(cur) + CHAR_CODE_OFFSET);
   }
   return result;
 }
