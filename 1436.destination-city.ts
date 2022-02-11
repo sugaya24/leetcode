@@ -1,15 +1,11 @@
 export function destCity(paths: string[][]): string {
-  let flag = false;
-  for (const [_, to] of paths) {
-    flag = false;
-    for (const [from, _] of paths) {
-      if (from === to) {
-        flag = true;
-        break;
-      }
-    }
-    if (!flag) {
-      return to;
+  const setFrom = new Set<string>();
+  for (const [from, _] of paths) {
+    setFrom.add(from);
+  }
+  for (let i = 0; i < paths.length; i++) {
+    if (!setFrom.has(paths[i][1])) {
+      return paths[i][1];
     }
   }
 }
