@@ -3,9 +3,6 @@ export function areOccurrencesEqual(s: string): boolean {
   for (let i = 0; i < s.length; i++) {
     charMap.set(s[i], charMap.get(s[i]) + 1 || 1);
   }
-  const set = new Set<number>();
-  for (const count of charMap.values()) {
-    set.add(count);
-  }
+  const set = new Set<number>(charMap.values());
   return set.size === 1;
 }
