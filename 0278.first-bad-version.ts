@@ -5,18 +5,14 @@
  * };
  */
 
-type TIsBadVersion = (version: number) => boolean;
-type TSolution = (n: number) => number;
-
-export const solution = function (isBadVersion: TIsBadVersion): TSolution {
+export var solution = function (isBadVersion: any) {
   return function (n: number): number {
-    let left = 1;
-    let right = n;
-
-    while (left < right) {
-      let mid = Math.floor((left + right) / 2);
+    let left = 1,
+      right = n;
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
       if (isBadVersion(mid)) {
-        right = mid;
+        right = mid - 1;
       } else {
         left = mid + 1;
       }
