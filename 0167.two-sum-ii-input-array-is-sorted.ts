@@ -1,9 +1,15 @@
 export function twoSum(numbers: number[], target: number): number[] {
-  let len = numbers.length;
-  let i = 0;
-  let j = len - 1;
-  while (numbers[i] + numbers[j] !== target) {
-    numbers[i] + numbers[j] < target ? i++ : j--;
+  let left = 0,
+    right = numbers.length - 1;
+  while (left < right) {
+    const sum = numbers[left] + numbers[right];
+    if (sum === target) {
+      break;
+    } else if (sum < target) {
+      left++;
+    } else {
+      right--;
+    }
   }
-  return [i + 1, j + 1];
+  return [left + 1, right + 1];
 }
