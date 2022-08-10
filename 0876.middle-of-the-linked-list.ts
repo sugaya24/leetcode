@@ -9,18 +9,10 @@ class ListNode {
 }
 
 function middleNode(head: ListNode | null): ListNode | null {
-  if (!head?.next) {
-    return head;
-  }
-  let slow = head;
-  let fast = head;
-  while (fast?.next && fast.next?.next) {
+  let [slow, fast] = [head, head];
+  while (fast && fast.next) {
     slow = slow?.next!;
     fast = fast.next.next;
   }
-  if (!fast?.next) {
-    return slow;
-  } else {
-    return slow?.next;
-  }
+  return slow;
 }
