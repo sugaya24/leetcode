@@ -1,12 +1,11 @@
 function searchRange(nums: number[], target: number): number[] {
   let left = 0;
   let right = nums.length - 1;
-  let f = -1;
-  let l = -1;
+  const res = [-1, -1];
   while (left <= right) {
     const mid = Math.floor((left + right) / 2);
     if (nums[mid] === target) {
-      f = mid;
+      res[0] = mid;
     }
     if (nums[mid] < target) {
       left = mid + 1;
@@ -18,7 +17,7 @@ function searchRange(nums: number[], target: number): number[] {
   while (left <= right) {
     const mid = Math.floor((left + right) / 2);
     if (nums[mid] === target) {
-      l = mid;
+      res[1] = mid;
     }
     if (nums[mid] <= target) {
       left = mid + 1;
@@ -26,7 +25,7 @@ function searchRange(nums: number[], target: number): number[] {
       right = mid - 1;
     }
   }
-  return [f, l];
+  return res;
 }
 
 export default searchRange;
