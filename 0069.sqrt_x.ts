@@ -1,9 +1,9 @@
 function mySqrt(x: number): number {
-  let left = 0,
-    right = x;
+  let left = 0;
+  let right = x;
   while (left <= right) {
-    const mid = Math.ceil((left + right) / 2);
-    if (mid * mid <= x && x < (mid + 1) ** 2) {
+    const mid = Math.floor((left + right) / 2);
+    if (mid ** 2 === x) {
       return mid;
     }
     if (x < mid ** 2) {
@@ -12,6 +12,7 @@ function mySqrt(x: number): number {
       left = mid + 1;
     }
   }
+  return right;
 }
 
 export default mySqrt;
