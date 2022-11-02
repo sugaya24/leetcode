@@ -1,14 +1,10 @@
 function myPow(x: number, n: number): number {
-  let ans = 1.0;
-  let N = Math.abs(n);
-  while (N > 0) {
-    if (N % 2 === 1) {
-      ans *= x;
-    }
-    x *= x;
-    N = Math.floor(N / 2);
-  }
-  return n < 0 ? 1 / ans : ans;
+  if (n === 0) return 1;
+
+  let pow = Math.abs(n);
+  let res =
+    pow % 2 === 0 ? myPow(x * x, pow / 2) : myPow(x * x, (pow - 1) / 2) * x;
+  return n < 0 ? 1 / res : res;
 }
 
 export default myPow;
