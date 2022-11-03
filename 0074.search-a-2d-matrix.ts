@@ -1,13 +1,17 @@
 function searchMatrix(matrix: number[][], target: number): boolean {
-  const flat = matrix.flatMap((n) => n);
+  if (matrix.length === 0) return false;
+  const rows = matrix.length;
+  const cols = matrix[0].length;
   let l = 0;
-  let r = flat.length - 1;
+  let r = rows * cols - 1;
   while (l <= r) {
-    const mid = Math.floor((l + r) / 2);
-    if (flat[mid] === target) return true;
-    if (flat[mid] < target) {
+    const mid = Math.floor(l + (r - l) / 2);
+    const mid_element = matrix[Math.floor(mid / cols)][Math.floor(mid % cols)];
+    if (mid_element === target) {
+      return true;
+    } else if (mid_element < target) {
       l = mid + 1;
-    } else {
+    } else if (mid_element > target) {
       r = mid - 1;
     }
   }
