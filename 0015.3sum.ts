@@ -7,20 +7,20 @@ function threeSum(nums: number[]): number[][] {
     let right = sorted.length - 1;
     while (mid < right) {
       let s = sorted[left] + sorted[mid] + sorted[right];
-      if (s < 0) {
-        mid += 1;
-      } else if (s > 0) {
-        right -= 1;
-      } else {
+      if (s === 0) {
         res.push([sorted[left], sorted[mid], sorted[right]]);
-        while (mid < right && sorted[mid] === sorted[mid + 1]) {
-          mid += 1;
+        while (sorted[mid] === sorted[mid + 1]) {
+          mid++;
         }
-        while (mid < right && sorted[right] === sorted[right - 1]) {
-          right -= 1;
+        while (sorted[right] === sorted[right - 1]) {
+          right--;
         }
-        mid += 1;
-        right -= 1;
+        mid++;
+        right--;
+      } else if (s < 0) {
+        mid++;
+      } else {
+        right--;
       }
     }
   }
