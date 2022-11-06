@@ -1,21 +1,37 @@
 function backspaceCompare(s: string, t: string): boolean {
-  const stack1: string[] = [];
-  const stack2: string[] = [];
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === '#') {
-      stack1.pop();
-    } else {
-      stack1.push(s[i]);
+  let i = s.length - 1;
+  let j = t.length - 1;
+  let skipS = 0;
+  let skipT = 0;
+  while (i >= 0 || j >= 0) {
+    while (i >= 0) {
+      if (s.charAt(i) === '#') {
+        skipS++;
+        i--;
+      } else if (skipS > 0) {
+        skipS--;
+        i--;
+      } else {
+        break;
+      }
     }
-  }
-  for (let i = 0; i < t.length; i++) {
-    if (t[i] === '#') {
-      stack2.pop();
-    } else {
-      stack2.push(t[i]);
+    while (j >= 0) {
+      if (t.charAt(j) === '#') {
+        skipT++;
+        j--;
+      } else if (skipT > 0) {
+        skipT--;
+        j--;
+      } else {
+        break;
+      }
     }
+    if (i >= 0 && j >= 0 && s.charAt(i) !== t.charAt(j)) return false;
+    if (i >= 0 !== j >= 0) return false;
+    i--;
+    j--;
   }
-  return stack1.join('') === stack2.join('');
+  return true;
 }
 
 export default backspaceCompare;
