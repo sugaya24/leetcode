@@ -1,15 +1,17 @@
 function numSubarrayProductLessThanK(nums: number[], k: number): number {
+  if (k <= 1) return 0;
   let ans = 0;
-  for (let i = 0; i < nums.length; i++) {
-    let product = 1;
-    for (let j = i; j < nums.length; j++) {
-      product *= nums[j];
-      if (product < k) {
-        ans++;
-      } else {
-        break;
-      }
+  let left = 0;
+  let right = 0;
+  let product = 1;
+  while (right < nums.length) {
+    product *= nums[right];
+    while (product >= k) {
+      product /= nums[left];
+      left++;
     }
+    ans += right - left + 1;
+    right++;
   }
   return ans;
 }
