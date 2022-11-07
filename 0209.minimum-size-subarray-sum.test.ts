@@ -10,4 +10,7 @@ describe('209. Minimum Size Subarray Sum', () => {
   test('3', () => {
     expect(minSubArrayLen(11, [1, 1, 1, 1, 1, 1, 1, 1])).toBe(0);
   });
+  test('4', () => {
+    expect(minSubArrayLen(15, [1, 2, 3, 4, 5])).toBe(5);
+  });
 });

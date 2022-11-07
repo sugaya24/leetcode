@@ -4,14 +4,13 @@ function minSubArrayLen(target: number, nums: number[]): number {
   let sum = 0;
   let ans = 0;
   while (right <= nums.length) {
-    if (sum < target) {
-      sum += nums[right];
-      right++;
-    } else {
-      ans = ans === 0 ? right - left : Math.min(ans, right - left);
+    sum += nums[right];
+    while (sum >= target) {
+      ans = ans === 0 ? right - left + 1 : Math.min(ans, right - left + 1);
       sum -= nums[left];
       left++;
     }
+    right++;
   }
   return ans;
 }
