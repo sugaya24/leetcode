@@ -1,18 +1,16 @@
 function calculateTax(brackets: number[][], income: number): number {
-  let sum = 0;
-  let prevDollars = 0;
-  for (let i = 0; i < brackets.length; i++) {
-    const dollars = brackets[i][0] - prevDollars;
-    if (dollars < income) {
-      sum += (dollars * brackets[i][1]) / 100;
-      income -= dollars;
-    } else {
-      sum += (income * brackets[i][1]) / 100;
-      break;
-    }
-    prevDollars = brackets[i][0];
-  }
-  return sum;
+  return brackets.reduce(
+    ([tax, prev], [upper, percent]) => {
+      const cur = Math.min(income, upper - prev);
+      tax += cur * (percent / 100);
+      income -= cur;
+      if (income <= 0) {
+        brackets.length = 0;
+      }
+      return [tax, upper];
+    },
+    [0, 0],
+  )[0];
 }
 
 export default calculateTax;
