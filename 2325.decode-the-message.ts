@@ -11,11 +11,7 @@ function decodeMessage(key: string, message: string): string {
   }
   let output = '';
   for (const c of message) {
-    if (c === ' ') {
-      output += ' ';
-    } else {
-      output += dict.get(c);
-    }
+    output += dict.get(c) || ' ';
   }
   return output;
 }
