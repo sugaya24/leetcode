@@ -1,17 +1,17 @@
 function haveConflict(event1: string[], event2: string[]): boolean {
-  const e1Start =
-    Number(event1[0].split(':')[0]) * 60 + Number(event1[0].split(':')[1]);
-  const e1End =
-    Number(event1[1].split(':')[0]) * 60 + Number(event1[1].split(':')[1]);
-  const e2Start =
-    Number(event2[0].split(':')[0]) * 60 + Number(event2[1].split(':')[1]);
-  const e2End =
-    Number(event2[1].split(':')[0]) * 60 + Number(event2[1].split(':')[1]);
-  return (
-    (e1Start <= e2Start && e2Start <= e1End) ||
-    (e1Start <= e2End && e2End <= e1End) ||
-    (e2Start <= e1Start && e1End <= e2End)
-  );
+  const [start1, end1] = event1;
+  const [start2, end2] = event2;
+  if (notEarlier(start1, start2)) {
+    return notEarlier(end2, start1);
+  } else {
+    return notEarlier(end1, start2);
+  }
+}
+
+function notEarlier(time1: string, time2: string): boolean {
+  const min1 = Number(time1.slice(0, 2)) * 60 + Number(time1.slice(3));
+  const min2 = Number(time2.slice(0, 2)) * 60 + Number(time2.slice(3));
+  return min1 >= min2;
 }
 
 export default haveConflict;
