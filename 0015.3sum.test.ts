@@ -24,4 +24,9 @@ describe('15. 3Sum', () => {
     const exptectedArray = [[0, 0, 0]];
     expect(result.length).toBe(exptectedArray.length);
   });
+  test('5', () => {
+    const result = threeSum([-1, 0, 1, 0]);
+    const exptectedArray = [[-1, 0, 1]];
+    expect(result.length).toBe(exptectedArray.length);
+  });
 });

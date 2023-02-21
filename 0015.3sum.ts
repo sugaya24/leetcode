@@ -1,26 +1,25 @@
 function threeSum(nums: number[]): number[][] {
-  const res = [];
-  const sorted = nums.sort((a, b) => a - b);
-  for (let left = 0; left < sorted.length - 2; left++) {
-    if (left > 0 && sorted[left] === sorted[left - 1]) continue;
-    let mid = left + 1;
-    let right = sorted.length - 1;
-    while (mid < right) {
-      let s = sorted[left] + sorted[mid] + sorted[right];
-      if (s === 0) {
-        res.push([sorted[left], sorted[mid], sorted[right]]);
-        while (sorted[mid] === sorted[mid + 1]) {
-          mid++;
+  const res: number[][] = [];
+  nums.sort((a, b) => a - b);
+
+  for (let i = 0; i < nums.length; i++) {
+    if (i > 0 && nums[i] === nums[i - 1]) {
+      continue;
+    }
+    let left = i + 1;
+    let right = nums.length - 1;
+    while (left < right) {
+      const threeSum = nums[i] + nums[left] + nums[right];
+      if (threeSum === 0) {
+        res.push([nums[i], nums[left], nums[right]]);
+        left++;
+        while (nums[left] === nums[left - 1] && left < right) {
+          left++;
         }
-        while (sorted[right] === sorted[right - 1]) {
-          right--;
-        }
-        mid++;
+      } else if (threeSum > 0) {
         right--;
-      } else if (s < 0) {
-        mid++;
       } else {
-        right--;
+        left++;
       }
     }
   }
