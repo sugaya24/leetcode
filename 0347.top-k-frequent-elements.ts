@@ -1,14 +1,13 @@
 function topKFrequent(nums: number[], k: number): number[] {
-  const map = new Map();
-  for (const num of nums) {
-    map.set(num, map.get(num) + 1 || 1);
-  }
-  const sorted = [...map.entries()].sort((a, b) => b[1] - a[1]);
-  const ans = [];
-  for (let i = 0; i < k; i++) {
-    ans.push(sorted[i][0]);
-  }
-  return ans;
+  const freq: Map<number, number> = new Map();
+  nums.forEach((num) => {
+    return freq.get(num) ? freq.set(num, freq.get(num)! + 1) : freq.set(num, 1);
+  });
+  const buckets: Array<Array<number>> = new Array(nums.length);
+  freq.forEach((value, key) => {
+    buckets[value] ? buckets[value].push(key) : (buckets[value] = [key]);
+  });
+  return buckets.flat().slice(-k);
 }
 
 export default topKFrequent;
