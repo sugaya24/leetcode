@@ -27,7 +27,6 @@ function isValidSudoku(board: string[][]): boolean {
         return false;
       }
 
-      console.log('cols', cols);
       cols.get(c)?.add(num);
       rows.get(r)?.add(num);
       squares.get(grid)?.add(num);
