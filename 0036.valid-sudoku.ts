@@ -1,34 +1,38 @@
 function isValidSudoku(board: string[][]): boolean {
-  const N = 3;
-  for (let i = 0; i < board.length; i++) {
-    const rowSet = new Set();
-    const colSet = new Set();
-    const boxSet = new Set();
-    for (let j = 0; j < board.length; j++) {
-      if (board[i][j] !== '.' && rowSet.has(board[i][j])) {
-        return false;
-      } else {
-        rowSet.add(board[i][j]);
+  const rows: Map<number, Set<string>> = new Map();
+  const cols: Map<number, Set<string>> = new Map();
+  const squares: Map<string, Set<string>> = new Map();
+  for (let r = 0; r < 9; r++) {
+    for (let c = 0; c < 9; c++) {
+      const num = board[r][c];
+      if (num === '.') {
+        continue;
+      }
+      const grid = `${Math.floor(r / 3)}${Math.floor(c / 3)}}`;
+      if (!cols.has(c)) {
+        cols.set(c, new Set());
+      }
+      if (!rows.has(r)) {
+        rows.set(r, new Set());
+      }
+      if (!squares.has(grid)) {
+        squares.set(grid, new Set());
       }
 
-      if (board[j][i] !== '.' && colSet.has(board[j][i])) {
+      if (
+        rows.get(r)?.has(num) ||
+        cols.get(c)?.has(num) ||
+        squares.get(grid)?.has(num)
+      ) {
         return false;
-      } else {
-        colSet.add(board[j][i]);
       }
 
-      const boxNum =
-        board[N * Math.floor(i / N) + Math.floor(j / N)][
-          ((i * N) % 9) + (j % N)
-        ];
-      if (boxNum !== '.' && boxSet.has(boxNum)) {
-        return false;
-      } else {
-        boxSet.add(boxNum);
-      }
+      console.log('cols', cols);
+      cols.get(c)?.add(num);
+      rows.get(r)?.add(num);
+      squares.get(grid)?.add(num);
     }
   }
-
   return true;
 }
 
